@@ -8,16 +8,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Dateien laden
+        uses: actions/checkout@v4
 
-      - name: ZIP entpacken
+      - name: FIX2 entpacken
         run: unzip -o karsak-stundenzettel-android-FIX2.zip
 
-      - name: APK erstellen
-        run: echo "APK wird gebaut"
+      - name: Java 17 einrichten
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
 
-      - name: APK hochladen
+      - name: Gradle einrichten
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+
+      - name: APK bauen
+        working-directory: karsak-stundenzettel-android
+        run: gradle assembleDebug
+
+      - name: APK bereitstellen
         uses: actions/upload-artifact@v4
         with:
           name: Karsak-Stundenzettel-APK
-          path: .
+          path: karsak-stundenzettel-android/app/build/outputs/apk/debug/app-debug.apk
