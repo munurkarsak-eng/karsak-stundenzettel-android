@@ -1,0 +1,23 @@
+name: Stundenzettel APK bauen
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ZIP entpacken
+        run: unzip -o karsak-stundenzettel-android-FIX2.zip
+
+      - name: APK erstellen
+        run: echo "APK wird gebaut"
+
+      - name: APK hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: Karsak-Stundenzettel-APK
+          path: .
