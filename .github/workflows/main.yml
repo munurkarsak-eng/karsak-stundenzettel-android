@@ -29,6 +29,9 @@ jobs:
 
       - name: Mitarbeiter APK bauen
         working-directory: appsource/karsak-stundenzettel-android
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         run: gradle assembleDebug
 
       - name: Mitarbeiter APK bereitstellen
