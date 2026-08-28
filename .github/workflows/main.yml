@@ -11,7 +11,7 @@ jobs:
       - name: Dateien laden
         uses: actions/checkout@v4
 
-      - name: Mitarbeiter FX63 entpacken
+      - name: Mitarbeiter FX64 entpacken
         run: |
           rm -rf appsource
           mkdir -p appsource
