@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Mitarbeiter FX61 entpacken
-        run: unzip -o karsak-stundenzettel-MITARBEITER-FX62.zip
+        run: unzip -o karsak-stundenzettel-MITARBEITER-FX63.zip
 
       - name: Java 17 einrichten
         uses: actions/setup-java@v4
