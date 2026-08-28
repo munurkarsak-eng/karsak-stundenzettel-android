@@ -28,7 +28,7 @@ jobs:
         run: chmod +x appsource/gradlew
 
       - name: APK bauen
-        working-directory: appsource
+        working-directory: appsource/karsak-stundenzettel-android
         run:chmod +x appsource/karsak-stundenzettel-android/gradlew
 
       - name: APK bereitstellen
