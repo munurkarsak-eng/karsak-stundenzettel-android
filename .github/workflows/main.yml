@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: FX15 entpacken
-        run: unzip -o karsak-stundenzettel-android-FX22.zip
+        run: unzip -o karsak-stundenzettel-android-FX23.zip
 
       - name: Java 17 einrichten
         uses: actions/setup-java@v4
