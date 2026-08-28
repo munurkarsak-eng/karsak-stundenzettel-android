@@ -11,7 +11,7 @@ jobs:
       - name: Dateien laden
         uses: actions/checkout@v4
 
-      - name: Mitarbeiter FX61 entpacken
+      - name: Chef FX29 entpacken
         run: run: unzip -o karsak-stundenzettel-CHEF-FX29.zip
 
       - name: Java 17 einrichten
