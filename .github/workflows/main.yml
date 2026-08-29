@@ -1,4 +1,4 @@
-name: FX65 SUPABASE APK bauen
+name: FX66 SUPABASE APK bauen
 
 on:
   workflow_dispatch:
