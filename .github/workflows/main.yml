@@ -15,7 +15,7 @@ jobs:
         run: |
           rm -rf appsource
           mkdir -p appsource
-          unzip -o "Karsak-Stundenzettel-MITARBEITER-FX63-SUPABASE.zip" -d appsource
+          unzip -o "Karsak-Stundenzettel-MITARBEITER-FX64-SUPABASE.zip" -d appsource
           ls -la appsource/karsak-stundenzettel-android
 
       - name: Java 17 einrichten
