@@ -1,4 +1,4 @@
-name: Mitarbeiter FX63 SUPABASE APK bauen
+name: FX64 SUPABASE APK bauen
 
 on:
   workflow_dispatch:
@@ -11,33 +11,23 @@ jobs:
       - name: Repository laden
         uses: actions/checkout@v4
 
-      - name: Supabase Mitarbeiter-App entpacken
+      - name: FX64 entpacken und APK bauen
         run: |
-          rm -rf appsource
-          mkdir -p appsource
-          unzip -o "Karsak-Stundenzettel-MITARBEITER-FX64-SUPABASE.zip" -d appsource
-          ls -la appsource/karsak-stundenzettel-android
+          mkdir -p fx64build
+          unzip -o "Karsak-Stundenzettel-MITARBEITER-FX64-SUPABASE-FINAL.zip" -d fx64build
 
-      - name: Java 17 einrichten
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
+          GRADLEW=$(find fx64build -name gradlew -type f | head -n 1)
+          ROOT=$(dirname "$GRADLEW")
 
-      - name: Gradle einrichten
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.11.1'
+          cd "$ROOT"
+          chmod +x gradlew
+          ./gradlew assembleDebug
 
-      - name: Supabase APK bauen
-        working-directory: appsource/karsak-stundenzettel-android
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
-        run: gradle assembleDebug
+          APK=$(find . -path "*/build/outputs/apk/debug/*.apk" -type f | head -n 1)
+          cp "$APK" "$GITHUB_WORKSPACE/Karsak-Stundenzettel-FX64.apk"
 
-      - name: Supabase APK bereitstellen
+      - name: APK bereitstellen
         uses: actions/upload-artifact@v4
         with:
-          name: Karsak-Stundenzettel-MITARBEITER-FX63-SUPABASE
-          path: appsource/karsak-stundenzettel-android/app/build/outputs/apk/debug/app-debug.apk
+          name: Karsak-Stundenzettel-FX64
+          path: Karsak-Stundenzettel-FX64.apk
