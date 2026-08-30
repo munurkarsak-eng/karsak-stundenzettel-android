@@ -1,4 +1,4 @@
-name: FX67 MITARBEITER APK bauen
+name: FX68 MITARBEITER APK bauen
 
 on:
   workflow_dispatch:
