@@ -1,4 +1,4 @@
-name: FX66 SUPABASE APK bauen
+name: FX67 MITARBEITER APK bauen
 
 on:
   workflow_dispatch:
@@ -25,17 +25,15 @@ jobs:
         with:
           gradle-version: '8.11.1'
 
-      - name: FX66 entpacken
+      - name: FX67 entpacken
         run: |
-          rm -rf fx66build
-          mkdir -p fx66build
-          unzip -o "Karsak-Stundenzettel-MITARBEITER-FX66-SUPABASE-FIX.zip" -d fx66build
-          echo "=== Inhalt ==="
-          find fx66build -maxdepth 3 -type f | head -50
+          rm -rf fx67build
+          mkdir -p fx67build
+          unzip -o "Karsak-Stundenzettel-MITARBEITER-FX67-KALENDER-WIE-CHEF.zip" -d fx67build
 
-      - name: FX66 APK bauen
+      - name: FX67 APK bauen
         run: |
-          cd fx66build
+          cd fx67build
           PROJECT_DIR="$(find . -name settings.gradle.kts -printf '%h\n' | head -1)"
           echo "Projektordner: $PROJECT_DIR"
           cd "$PROJECT_DIR"
@@ -44,6 +42,6 @@ jobs:
       - name: APK bereitstellen
         uses: actions/upload-artifact@v4
         with:
-          name: Karsak-Stundenzettel-MITARBEITER-FX66
-          path: fx66build/**/build/outputs/apk/debug/*.apk
+          name: Karsak-Stundenzettel-MITARBEITER-FX67
+          path: fx67build/**/build/outputs/apk/debug/*.apk
           if-no-files-found: error
