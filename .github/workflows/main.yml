@@ -25,15 +25,15 @@ jobs:
         with:
           gradle-version: '8.11.1'
 
-      - name: FX71 entpacken
+      - name: FX72 entpacken
         run: |
-          rm -rf fx71build
-          mkdir -p fx71build
-          unzip -o "Karsak-Stundenzettel-MITARBEITER-FX71-EMPFANG-SYNCHRONISIEREN.zip" -d fx71build
+          rm -rf fx72build
+          mkdir -p fx72build
+          unzip -o "Karsak-Stundenzettel-MITARBEITER-FX72-MONAT-LOHN-ABSCHLAG.zip" -d fx72build
 
-      - name: FX71 APK bauen
+      - name: FX72 APK bauen
         run: |
-          cd fx71build
+          cd fx72build
           PROJECT_DIR="$(find . -name settings.gradle.kts -printf '%h\n' | head -1)"
           echo "Projektordner: $PROJECT_DIR"
           cd "$PROJECT_DIR"
@@ -42,6 +42,6 @@ jobs:
       - name: APK bereitstellen
         uses: actions/upload-artifact@v4
         with:
-          name: Karsak-Stundenzettel-MITARBEITER-FX71
-          path: fx71build/**/build/outputs/apk/debug/*.apk
+          name: Karsak-Stundenzettel-MITARBEITER-FX72
+          path: fx72build/**/build/outputs/apk/debug/*.apk
           if-no-files-found: error
