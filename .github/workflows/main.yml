@@ -1,4 +1,4 @@
-name: FX73 MITARBEITER APK bauen
+name: FX74 MITARBEITER APK bauen
 
 on:
   workflow_dispatch:
@@ -25,15 +25,15 @@ jobs:
         with:
           gradle-version: '8.11.1'
 
-      - name: FX73 entpacken
+      - name: FX74 entpacken
         run: |
-          rm -rf fx73build
-          mkdir -p fx73build
-          unzip -o "Karsak-Stundenzettel-MITARBEITER-FX73-BAUSTELLEN-SYNC.zip" -d fx73build
+          rm -rf fx74build
+          mkdir -p fx74build
+          unzip -o "Karsak-Stundenzettel-MITARBEITER-FX74-NACHTRAEGLICH-AENDERN.zip" -d fx74build
 
-      - name: FX73 APK bauen
+      - name: FX74 APK bauen
         run: |
-          cd fx73build
+          cd fx74build
           PROJECT_DIR="$(find . -name settings.gradle.kts -printf '%h\n' | head -1)"
           echo "Projektordner: $PROJECT_DIR"
           cd "$PROJECT_DIR"
@@ -42,6 +42,6 @@ jobs:
       - name: APK bereitstellen
         uses: actions/upload-artifact@v4
         with:
-          name: Karsak-Stundenzettel-MITARBEITER-FX73
-          path: fx73build/**/build/outputs/apk/debug/*.apk
+          name: Karsak-Stundenzettel-MITARBEITER-FX74
+          path: fx74build/**/build/outputs/apk/debug/*.apk
           if-no-files-found: error
